@@ -69,11 +69,11 @@ def main():
             # Display the resulting frame
             count += 1
             print(count)
-            cv2.imwrite("original/{}.png".format(count), frame)
-            cv2.imwrite("landmarks/{}.png".format(count), black_image)
+            cv2.imwrite("original/{}_{}.png".format(count, args.postfix), frame)
+            cv2.imwrite("landmarks/{}_{}.png".format(count, args.postfix), black_image)
             tmpimage = frame.copy()
             tmpimage[black_image>0]=255
-            cv2.imwrite("rendered/{}.png".format(count), tmpimage)
+            cv2.imwrite("rendered/{}_{}.png".format(count, args.postfix), tmpimage)
             # cv2.imshow('img',cv2.resize(cv2.addWeighted(frame, 0.5, black_image, 0.5, 0.0), None, fx=0.5, fy=0.5))
             # cv2.imshow('img',cv2.resize(tmpimage, None, fx=0.5, fy=0.5))
             fps.update()
@@ -99,6 +99,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--file', dest='filename', type=str, help='Name of the video file.')
     parser.add_argument('--num', dest='number', type=int, help='Number of train data to be created.')
+    parser.add_argument('--post', dest='postfix', type=str, help='sufix for image names when training multiple videos.')
     parser.add_argument('--landmark-model', dest='face_landmark_shape_file', type=str, help='Face landmark model file.')
     args = parser.parse_args()
 
@@ -107,3 +108,5 @@ if __name__ == '__main__':
     predictor = dlib.shape_predictor(args.face_landmark_shape_file)
 
     main()
+
+
