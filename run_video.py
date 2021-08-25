@@ -124,6 +124,8 @@ def main():
         fps.update()
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
+        
+        print(counter)
 
     fps.stop()
     print('[INFO] elapsed time (total): {:.2f}'.format(fps.elapsed()))
