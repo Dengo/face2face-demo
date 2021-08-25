@@ -110,6 +110,8 @@ def main():
 
         cv2.imwrite('./render/image%09d.jpg'%counter,image_all)
         cv2.imwrite('./render/face/gen/image%09d.jpg'%counter,image_bgr)
+        cv2.imwrite('./render/face/gen_normal/image%09d.jpg'%counter,image_normal)
+        cv2.imwrite('./render/face/gen_landmark/image%09d.jpg'%counter,image_landmark)
         cv2.imwrite('./render/face/face/image%09d.jpg'%counter,resize(black_image))
         cv2.imwrite('./render/face/input/image%09d.jpg'%counter,resize(frame_resize))
         if len(faces)>0:
